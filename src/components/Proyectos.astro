@@ -1,0 +1,58 @@
+---
+import CardProyectos from "./CardProyectos.astro";
+
+const projects = [
+	{
+		title: "eccormerce tech",
+        imageSrc:"/proyectos/proyecto1.png",
+		description:
+			"Plataforma de e-commerce enfocada en productos tecnológicos",
+		tech: ["React", "Tailwind CSS", "Springboot","PostgreSQL"],
+		repoUrl: "https://github.com/JoelDev2002/frontend-eccomerce-tech",
+		demoUrl:null
+	},
+	{
+		title: "PetVet",
+        imageSrc:"/proyectos/proyecto2.png",
+		description:
+			"Sistema de gestión para clínicas veterinarias. Incluye autenticación de usuarios y módulos para administrar mascotas, citas y registros clínicos.",
+		tech: ["Angular","Tailwindcss","Springboot","PostgreSQL",],
+		repoUrl: "https://github.com/JoelDev2002/veterinaria2.0",
+	},
+	{
+		title: "Mi Portafolio",
+        imageSrc:"/proyectos/proyecto3.png",
+		description:
+			"Sitio personal donde muestro mis proyectos, habilidades y formas de contacto.",
+		tech: ["Astro", "Tailwind CSS"],
+		repoUrl: "https://github.com/JoelDev2002",
+		demoUrl: "https://example.com",
+	},
+];
+---
+
+<section id="proyectos" class="mx-auto max-w-7xl px-4 pt-20">
+	<h2 class="text-4xl font-bold text-white sm:text-5xl md:text-6xl flex justify-center items-center gap-2">
+		<span class="text-red-500">Proyectos</span>
+	</h2>
+	<p class="mt-3 max-w-2xl text-sm text-white/65 sm:text-base">
+		Aquí puedes ver parte de lo que he construido. Cada proyecto tiene su propósito y siempre estoy trabajando en algo nuevo.
+	</p>
+
+	<div class="mt-10 flex flex-wrap justify-center gap-6">
+		{
+			projects.map((project) => (
+				<div class="flex w-full max-w-sm">
+					<CardProyectos
+						title={project.title}
+						imageSrc={project.imageSrc}
+						description={project.description}
+						tech={project.tech}
+						repoUrl={project.repoUrl}
+						demoUrl={project.demoUrl}
+					/>
+				</div>
+			))
+		}
+	</div>
+</section>

@@ -1,0 +1,42 @@
+<div class="flex rounded-full">
+    <button class=" rounded-full hidden dark:inline-block cursor-pointer " id="btnLight"><img src="/sun.png" alt="tema claro" width="50px" height="50px"></button>
+    <button class=" rounded-full inline-block dark:hidden  cursor-pointer " id="btnDark"><img src="/moon.png" alt="tema oscuro" width="50px" height="50px"></button>
+</div>
+
+<script>
+    const btnLight = document.getElementById('btnLight');
+    const btnDark = document.getElementById('btnDark');
+
+    const colorSistema= window.matchMedia("prefers-color-scheme: dark").matches?'dark':'light';
+
+    if (btnLight && btnDark) {
+        btnDark.addEventListener('click', (e) => {
+        e.preventDefault();
+        document.documentElement.classList.add('dark');
+
+        localStorage.setItem("theme",'dark')
+       });
+
+        btnLight.addEventListener('click', (e) => {
+        e.preventDefault();
+        document.documentElement.classList.remove('dark');
+        localStorage.setItem("theme",'light')
+        });
+    }
+    const colorLocal=localStorage.getItem('theme');
+
+    if(colorLocal){
+        if(colorLocal=== 'dark'){
+            document.documentElement.classList.add('dark');
+        }else{
+            document.documentElement.classList.remove('dark')
+        }
+    }else{
+        if(colorSistema==='dark'){
+            document.documentElement.classList.add('dark');
+        }else{
+            document.documentElement.classList.remove('dark')
+        }
+    }
+    
+</script>

@@ -1,0 +1,148 @@
+---
+import CardHabilidades from "./CardHabilidades.astro";
+import Angular from "./icons/lenguajes/Angular.astro";
+import Css from "./icons/lenguajes/Css.astro";
+import Git from "./icons/lenguajes/Git.astro";
+import Html from "./icons/lenguajes/Html.astro";
+import Java from "./icons/lenguajes/Java.astro";
+import Javascript from "./icons/lenguajes/Javascript.astro";
+import Python from "./icons/lenguajes/Python.astro";
+import Fastapi from "./icons/lenguajes/Fastapi.astro";
+import React from "./icons/lenguajes/React.astro";
+import Springboot from "./icons/lenguajes/Springboot.astro";
+import TailwindCss from "./icons/lenguajes/TailwindCss.astro";
+import CSharp from "./icons/lenguajes/CSharp.astro";
+import NetCore from "./icons/lenguajes/NetCore.astro";
+import AstroIcon from "./icons/lenguajes/Astro.astro";
+import Docker from "./icons/lenguajes/Docker.astro";
+---
+
+<section id="habilidades" class="mx-auto max-w-400 px-3 sm:px-4 pt-20 ">
+    <h2 class="text-4xl font-bold text-white sm:text-5xl md:text-6xl flex justify-center items-center gap-2">
+        <span class="text-red-500">Habilidades</span>
+    </h2>
+
+    <section
+        class="mt-10 grid w-full grid-cols-2 gap-2 overflow-visible sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-8"
+    >
+    <CardHabilidades
+    title="HTML"
+    description="El lenguaje base de toda página web."
+    href="https://developer.mozilla.org/es/docs/Web/HTML"
+>
+    <Html slot="icon" />
+</CardHabilidades>
+
+<CardHabilidades
+    title="CSS"
+    description="Da estilo y diseño visual a las páginas web."
+    href="https://developer.mozilla.org/es/docs/Web/CSS"
+>
+    <Css slot="icon" />
+</CardHabilidades>
+
+<CardHabilidades
+    title="JavaScript"
+    description="Hace que las páginas web sean interactivas."
+    href="https://developer.mozilla.org/es/docs/Web/JavaScript"
+>
+    <Javascript slot="icon" />
+</CardHabilidades>
+
+<CardHabilidades
+    title="Angular"
+    description="Framework para construir aplicaciones web robustas."
+    href="https://angular.dev"
+>
+    <Angular slot="icon" />
+</CardHabilidades>
+
+<CardHabilidades
+    title="React"
+    description="Librería para crear interfaces de usuario modernas."
+    href="https://react.dev"
+>
+    <React slot="icon" />
+</CardHabilidades>
+
+<CardHabilidades
+    title="Git"
+    description="Controla y rastrea los cambios de tu código."
+    href="https://git-scm.com/doc"
+>
+    <Git slot="icon" />
+</CardHabilidades>
+
+<CardHabilidades
+    title="Tailwind CSS"
+    description="Clases utilitarias para diseñar sin salir del HTML."
+    href="https://tailwindcss.com/docs"
+>
+    <TailwindCss slot="icon" />
+</CardHabilidades>
+
+<CardHabilidades
+    title="Python"
+    description="Lenguaje versátil, ideal para backend y datos."
+    href="https://docs.python.org/es/3"
+>
+    <Python slot="icon" />
+</CardHabilidades>
+
+<CardHabilidades
+    title="FastAPI"
+    description="Crea APIs rápidas y modernas con Python."
+    href="https://fastapi.tiangolo.com"
+>
+    <Fastapi slot="icon" />
+</CardHabilidades>
+
+<CardHabilidades
+    title="Java"
+    description="Lenguaje robusto y multiplataforma para backend."
+    href="https://dev.java/learn"
+>
+    <Java slot="icon" />
+</CardHabilidades>
+
+<CardHabilidades
+    title="Spring Boot"
+    description="Framework Java para APIs y aplicaciones backend."
+    href="https://spring.io/projects/spring-boot"
+>
+    <Springboot slot="icon" />
+</CardHabilidades>
+
+<CardHabilidades
+    title="C#"
+    description="Lenguaje de Microsoft para apps y servicios backend."
+    href="https://learn.microsoft.com/es-es/dotnet/csharp"
+>
+    <CSharp slot="icon" />
+</CardHabilidades>
+
+<CardHabilidades
+    title=".NET Core"
+    description="Framework de Microsoft para construir apps backend con C#."
+    href="https://learn.microsoft.com/es-es/dotnet"
+>
+    <NetCore slot="icon" />
+</CardHabilidades>
+
+<CardHabilidades
+    title="Astro"
+    description="Framework para sitios web rápidos y con poco JS."
+    href="https://docs.astro.build"
+>
+    <AstroIcon slot="icon" />
+</CardHabilidades>
+
+<CardHabilidades
+    title="Docker"
+    description="Empaqueta y ejecuta apps en contenedores portables."
+    href="https://docs.docker.com"
+>
+    <Docker slot="icon" />
+</CardHabilidades>
+    </section>
+</section>

@@ -1,0 +1,59 @@
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
+
+@theme {
+    /* Mantenemos tu estructura semántica porque es la más óptima */
+    --color-bg-page: var(--page-background);
+    --color-bg-card: var(--card-background);
+    --color-text-main: var(--main-text);
+    --color-text-muted: var(--muted-text);
+    --color-brand-primary: var(--primary-brand-color);
+    --color-brand-hover: var(--hover-brand-color);
+    --color-btn-fill: var(--primary-brand-color);
+    --color-btn-text: var(--on-var-text);
+    --color-btn-ghost-border: var(--primary-brand-color);
+    --color-btn-ghost-text: var(--primary-brand-color);
+    --color-border-subtle: var(--subtle-border);
+    --color-icon-stroke: var(--brand-icon-stroke);
+}
+
+:root {
+    /* --- MODO CLARO: "Quartz & Crimson" --- */
+    /* Usamos un fondo casi blanco pero con un toque de "arena" para que se vea premium */
+    --page-background: #ffffff;       
+    --card-background: #ffffff;       
+
+    /* Texto: Usamos un gris azulado muy oscuro para que el rojo destaque más */
+    --main-text: #1a1a1a;             
+    --muted-text: #64748b;             
+    --on-var-text: #ffffff;           
+
+    /* El Rojo: Un rojo "Sangre de Toro" más elegante, no tan chillón */
+    --primary-brand-color: #c21d1d;   
+    --hover-brand-color: #991b1b;     
+
+    /* Detalles: Bordes muy finos y elegantes */
+    --subtle-border: #e2e8f0;         
+    --brand-icon-stroke: #c21d1d;     
+}
+
+.dark {
+    /* --- MODO OSCURO: "Obsidian & Cherry" --- */
+    /* Fondo: Un negro casi puro pero con matiz de vino. Muy iPhone-style */
+    --page-background: #0a0a0a;       
+    --card-background: #161616;       
+
+    /* Texto: Blanco puro para los títulos y un gris seda para los párrafos */
+    --main-text: #f8fafc;             
+    --muted-text: #94a3b8;             
+    --on-var-text: #ffffff;           
+
+    /* El Rojo: Aquí sí usamos un rojo vibrante (vivid-red) para que parezca luz neón */
+    --primary-brand-color: #ff3131;   
+    --hover-brand-color: #ff5e5e;     
+
+    /* Detalles: Bordes que apenas se ven, para dar sensación de "glassmorphism" */
+    --subtle-border: #262626;         
+    --brand-icon-stroke: #ff3131;     
+}

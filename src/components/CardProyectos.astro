@@ -1,0 +1,86 @@
+---
+interface Props {
+	title: string;
+	imageSrc: string;
+	description: string;
+	tech: string[];
+	repoUrl: string;
+	/** Si no se pasa, el botón Demo no se muestra */
+	demoUrl?: string|null;
+	altUrl?: string;
+}
+
+const {
+	title,
+	imageSrc,
+	description,
+	tech,
+	repoUrl,
+	demoUrl,
+	altUrl = title,
+} = Astro.props;
+---
+
+<article
+	class=" group relative flex h-full flex-col overflow-hidden rounded-2xl border border-border-subtle bg-bg-card p-5 shadow-lg transition-all duration-300 hover:shadow-brand-primary/10"
+>
+	<div
+		class="pointer-events-none absolute -right-12 -top-12 h-40 w-40 rounded-full bg-brand-primary/10 blur-3xl transition duration-500 group-hover:bg-brand-primary/20"
+		aria-hidden="true"
+	>
+	</div>
+
+	<div class="relative z-10 flex flex-1 flex-col gap-4">
+		<h3
+			class="text-lg font-semibold leading-tight text-text-main sm:text-xl"
+		>
+			{title}
+		</h3>
+
+		<img
+			src={imageSrc}
+			alt={altUrl}
+			class="w-full rounded-xl object-cover border border-border-subtle"
+		/>
+
+		<ul class="flex flex-wrap gap-2" aria-label="Tecnologías usadas">
+			{
+				tech.map((name) => (
+					<li>
+						<span class="inline-flex items-center rounded-lg border border-brand-primary/20 bg-brand-primary/10 px-2 py-1 text-[9px] font-medium uppercase tracking-wide text-brand-primary sm:text-[11px]">
+							{name}
+						</span>
+					</li>
+				))
+			}
+		</ul>
+
+		<p class="text-sm leading-relaxed text-text-muted">
+			{description}
+		</p>
+
+		<div class="mt-auto flex flex-wrap gap-2 pt-1">
+			<a
+				href={repoUrl}
+				target="_blank"
+				rel="noopener noreferrer"
+				class="inline-flex flex-1 items-center justify-center gap-1.5 rounded-xl border border-btn-ghost-border text-btn-ghost-text px-4 py-2.5 text-center text-sm font-medium transition hover:bg-brand-primary/10 sm:flex-initial sm:min-w-34"
+			>
+				Código
+			</a>
+
+			{
+				demoUrl ? (
+					<a
+						href={demoUrl}
+						target="_blank"
+						rel="noopener noreferrer"
+						class="inline-flex flex-1 items-center justify-center gap-1.5 rounded-xl bg-btn-fill text-btn-text px-4 py-2.5 text-center text-sm font-semibold shadow-lg shadow-brand-primary/20 transition hover:bg-brand-hover sm:flex-initial sm:min-w-34"
+					>
+						Demo
+					</a>
+				) : null
+			}
+		</div>
+	</div>
+</article>

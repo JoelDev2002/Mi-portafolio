@@ -1,0 +1,137 @@
+---
+import Gmail from "./icons/Gmail.astro";
+
+---
+
+<section class="mx-auto max-w-400 px-3 sm:px-4 pt-20" id="contacto">
+    <h2 class="text-6xl font-bold mb-6 flex justify-center items-center text-red-500" >
+        Contacto
+    </h2>
+    
+    <article
+        class="group relative mx-auto flex w-full max-w-md flex-col overflow-hidden rounded-2xl border border-border-subtle bg-bg-card p-6 shadow-xl backdrop-blur-xl transition-all duration-300"
+    >
+        <div
+            class="pointer-events-none absolute -right-12 -top-12 h-40 w-40 rounded-full bg-brand-primary/10 blur-3xl transition duration-500 group-hover:bg-brand-primary/20"
+            aria-hidden="true"
+        ></div>
+        
+        <div class="relative z-10 flex flex-1 flex-col gap-5">
+            <div class="flex flex-col gap-1">
+                <p class="text-sm text-text-muted">Envíame un mensaje, respondo pronto.</p>
+            </div>
+    
+            <form id="contact-form" class="flex flex-col gap-3" novalidate>
+                <div class="flex flex-col gap-1">
+                    <label for="contact-name" class="text-xs font-medium uppercase tracking-wide text-text-muted">
+                        Nombre
+                    </label>
+                    <input
+                        id="contact-name"
+                        name="name"
+                        type="text"
+                        required
+                        placeholder="Tu nombre"
+                        class="rounded-xl border border-border-subtle bg-bg-page/50 px-3.5 py-2.5 text-sm text-text-main placeholder-text-muted/50 backdrop-blur-sm transition focus:border-brand-primary focus:outline-none focus:ring-1 focus:ring-brand-primary/40"
+                    />
+                </div>
+    
+                <div class="flex flex-col gap-1">
+                    <label for="contact-email" class="text-xs font-medium uppercase tracking-wide text-text-muted">
+                        Email
+                    </label>
+                    <input
+                        id="contact-email"
+                        name="email"
+                        type="email"
+                        required
+                        placeholder="tu@email.com"
+                        class="rounded-xl border border-border-subtle bg-bg-page/50 px-3.5 py-2.5 text-sm text-text-main placeholder-text-muted/50 backdrop-blur-sm transition focus:border-brand-primary focus:outline-none focus:ring-1 focus:ring-brand-primary/40"
+                    />
+                </div>
+    
+                <div class="flex flex-col gap-1">
+                    <label for="contact-message" class="text-xs font-medium uppercase tracking-wide text-text-muted">
+                        Mensaje
+                    </label>
+                    <textarea
+                        id="contact-message"
+                        name="message"
+                        required
+                        rows="4"
+                        placeholder="¿En qué puedo ayudarte?"
+                        class="resize-none rounded-xl border border-border-subtle bg-bg-page/50 px-3.5 py-2.5 text-sm text-text-main placeholder-text-muted/50 backdrop-blur-sm transition focus:border-brand-primary focus:outline-none focus:ring-1 focus:ring-brand-primary/40"
+                    ></textarea>
+                </div>
+    
+                <div class="mt-auto pt-1">
+                    <button
+                        type="submit"
+                        class="inline-flex w-full items-center justify-center gap-1.5 rounded-xl bg-btn-fill px-4 py-2.5 text-center text-sm font-semibold text-btn-text shadow-lg shadow-brand-primary/20 transition hover:bg-brand-hover cursor-pointer active:scale-95"
+                    >
+                        Enviar mensaje
+                    </button>
+                </div>
+                <div class="flex items-center gap-3">
+                    <div class="flex-1 h-px bg-border-subtle"></div>
+                    <span class="text-text-muted text-xs">o escribeme directo</span>
+                    <div class="flex-1 h-px bg-border-subtle"></div>
+                </div> 
+                <div class="bg-gray-950/40 border border-gray-800 rounded-lg flex justify-center items-center gap-2 px-3 py-1 w-fit m-auto hover:bg-slate-800">
+                    <Gmail class="w-5 h-5"/>
+                    <button class="cursor-pointer " type="button" id="btn-copy">copiar correo</button>
+                </div>
+            </form>
+        </div>
+    </article>
+</section>
+
+<script>
+    import "notyf/notyf.min.css";
+    import { Notyf } from "notyf";
+
+    const notyf = new Notyf({
+        duration: 3000,
+        position: { x: "right", y: "bottom" },
+    });
+
+	const form = document.getElementById("contact-form") as HTMLFormElement |null;
+
+
+    form?.addEventListener("submit",async (e)=>{
+        e.preventDefault()
+
+        if(!form.checkValidity()){
+            form.reportValidity()
+            return
+        }
+        const respuesta=await fetch("https://formspree.io/f/xgonbpdd",{
+            method:"POST",
+            headers:{"accept":"application/json"},
+            body:new FormData(form)
+        });
+        if(respuesta.ok){
+            form.reset();
+            notyf.success("¡Mensaje enviado! Te responderé pronto.")
+        }else{
+            notyf.error("Algo salió mal, inténtelo de nuevo o sino hacerlo manualmente. :C")
+        }
+    })
+
+    //funcion para copiar correo
+    const correoACopiar="joel.machaca01+portafolio@gmail.com"
+
+    const btnCopy=document.getElementById("btn-copy")
+
+    btnCopy?.addEventListener("click",(e)=>{
+        e.preventDefault()
+        navigator.clipboard.writeText(correoACopiar)
+        .then(()=>{
+            btnCopy.textContent="¡Copiado!";
+        })
+        setTimeout(()=>{
+            btnCopy.textContent="copiar correo";
+        },3000)
+
+    })
+</script>

@@ -1,0 +1,70 @@
+---
+import LineaHombre from "./icons/LineaHombre.astro";
+import Github from "./icons/Github.astro"
+import Linkedin from "./icons/Linkedin.astro"
+import Gmail from "./icons/Gmail.astro";
+---
+
+<section
+    id="hero"
+    class=" scroll-mt-10 px-4pt-13 "
+>
+    <div class="flex flex-col md:flex-row gap-10 lg:gap-32 justify-center items-end max-w-5xl w-full mx-auto pt-10">
+
+        <!-- Ilustración -->
+        <div class="self-center mb-2 order-2 md:order-1 shrink-0">
+            <LineaHombre class="w-64 md:w-90 h-auto text-icon-stroke transition-colors duration-500" />
+        </div>
+
+        <!-- Contenido de texto -->
+        <div class="flex flex-col items-start gap-4 order-1 md:order-2">
+            <span class="py-1 px-3 text-xs text-brand-primary rounded-full border border-brand-primary/30 bg-brand-primary/10 font-medium">
+                Hola, soy
+            </span>
+
+            <h1 class="text-5xl md:text-6xl font-bold text-text-main leading-tight">
+                Joel Anderson <span class="text-brand-primary">Machaca Nina</span>
+            </h1>
+
+            <span class="text-xl font-semibold text-brand-primary/90">
+                Backend Developer
+            </span>
+
+            <p class="text-text-muted max-w-lg leading-relaxed">
+                Desarrollador Full-Stack con enfoque en React, Angular y Spring Boot. Cuento con experiencia en ambos lados del stack, aunque mi mayor interés está en el diseño de APIs y la arquitectura backend. Me enfoco en escribir código bien estructurado, fácil de mantener y que resuelva el problema correcto.
+            </p>
+
+            <!-- Botones CTA -->
+            <div class="flex gap-4 mt-2">
+                <a href="#proyectos" 
+                   class="py-3 px-6 text-btn-text rounded-2xl bg-btn-fill hover:bg-brand-hover transition-all hover:scale-105 shadow-lg shadow-brand-primary/20 font-bold">
+                   Ver proyectos
+                </a>
+                <a href="#contacto" 
+                   class="py-3 px-6 text-btn-ghost-text rounded-2xl border border-btn-ghost-border hover:bg-brand-primary/10 transition-all font-bold">
+                   Contáctame
+                </a>
+            </div>
+
+            <!-- Redes sociales -->
+            <div class="flex justify-center items-center gap-5 mt-4 p-3 rounded-2xl bg-bg-card border border-border-subtle shadow-sm">
+                <a href="https://github.com/JoelDev2002" 
+                   class="text-text-main hover:text-brand-primary transition-colors transform hover:scale-110" 
+                   target="_blank">
+                   <Github class="w-8 h-8"/>
+                </a>
+                <a href="https://www.linkedin.com/in/joel-machaca/" 
+                   class="text-text-main hover:text-brand-primary transition-colors transform hover:scale-110" 
+                   target="_blank">
+                   <Linkedin class="w-10 h-10" />
+                </a>
+                <a href="https://www.linkedin.com/in/joel-machaca/" 
+                   class="text-text-main hover:text-brand-primary transition-colors transform hover:scale-110" 
+                   target="_blank">
+                   <Gmail class="w-8 h-8" />
+                </a>
+            </div>
+        </div>
+
+    </div>
+</section>

@@ -1,0 +1,93 @@
+---
+import ButtonTheme from "./ButtonTheme.astro";
+---
+
+<div class="flex justify-center sticky top-3 z-100 ">
+    <nav class="inline-flex justify-center items-center gap-6 py-2 px-5 rounded-full backdrop-blur-md bg-bg-card/30 border border-border-subtle shadow-md dark:shadow-white/5 text-text-main">
+        <ul class="flex gap-6">
+            <li class="group relative">
+                <a href="#hero" class="nav-link transition-colors duration-300 group-hover:text-brand-primary">Inicio</a>
+                <span class="nav-indicator absolute -bottom-1 left-0 h-[2px] w-0 bg-brand-primary transition-all duration-300 group-hover:w-full"></span>
+            </li>
+            
+            <li class="group relative">
+                <a href="#habilidades" class="nav-link transition-colors duration-300 group-hover:text-brand-primary">Habilidades</a>
+                <span class="nav-indicator absolute -bottom-1 left-0 h-[2px] w-0 bg-brand-primary transition-all duration-300 group-hover:w-full"></span>
+            </li>
+
+            <li class="group relative">
+                <a href="#proyectos" class="nav-link transition-colors duration-300 group-hover:text-brand-primary">Proyectos</a>
+                <span class="nav-indicator absolute -bottom-1 left-0 h-[2px] w-0 bg-brand-primary transition-all duration-300 group-hover:w-full"></span>
+            </li>
+
+            <li class="group relative">
+                <a href="#contacto" class="nav-link transition-colors duration-300 group-hover:text-brand-primary">Contacto</a>
+                <span class="nav-indicator absolute -bottom-1 left-0 h-[2px] w-0 bg-brand-primary transition-all duration-300 group-hover:w-full"></span>
+            </li>
+        </ul>
+        
+        <div class="h-6 w-px bg-border-subtle"></div>
+        <ButtonTheme />
+    </nav>
+</div>
+
+<style>
+    .nav-link.active {
+        color: var(--primary-brand-color);
+    }
+    
+    .nav-link.active + .nav-indicator {
+        width: 100%;
+    }
+</style>
+
+<script>
+    const sections = Array.from(
+        document.querySelectorAll('section[id], div[id="hero"], div[id="habilidades"]')
+    );
+    const navLinks = document.querySelectorAll('.nav-link');
+
+    function setActive(id: string) {
+        navLinks.forEach((link) => {
+            link.classList.remove('active');
+            if (link.getAttribute('href') === `#${id}`) {
+                link.classList.add('active');
+            }
+        });
+    }
+
+    function getActiveSection(): string | null {
+        const scrollY = window.scrollY;
+        const viewportHeight = window.innerHeight;
+
+        // Si estamos casi al fondo, activar la última sección
+        if (window.innerHeight + scrollY >= document.body.scrollHeight - 10) {
+            return sections[sections.length - 1]?.getAttribute('id') ?? null;
+        }
+
+        // Buscar la sección cuyo top esté más cercana al 30% superior del viewport
+        // (así funciona igual bajando y subiendo)
+        const trigger = scrollY + viewportHeight * 0.3;
+
+        let active: Element | null = null;
+        for (const section of sections) {
+            const rect = section.getBoundingClientRect();
+            const top = rect.top + scrollY;
+            if (top <= trigger) {
+                active = section;
+            }
+        }
+
+        return active?.getAttribute('id') ?? null;
+    }
+
+    function onScroll() {
+        const id = getActiveSection();
+        if (id) setActive(id);
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+
+    // Ejecutar al cargar para marcar el estado inicial
+    onScroll();
+</script>
